@@ -49,16 +49,16 @@ if (false === defined('PHP_VERSION_ID') || PHP_VERSION_ID < 70100) {
 require_once __DIR__ . DIRECTORY_SEPARATOR . 'Autoloader.php';
 require_once __DIR__ . DIRECTORY_SEPARATOR . 'Consistency.php';
 
-$define = function ($constantName, $constantValue, $case = false) {
+$define = function ($constantName, $constantValue) {
     if (!defined($constantName)) {
-        return define($constantName, $constantValue, $case);
+        return define($constantName, $constantValue);
     }
 
     return false;
 };
 
-$define('SUCCEED', true);
-$define('FAILED', false);
+$define('SUCCEED', TRUE);
+$define('FAILED', FALSE);
 $define('…', '__hoa_core_fill');
 $define('DS', DIRECTORY_SEPARATOR);
 $define('PS', PATH_SEPARATOR);
@@ -69,10 +69,10 @@ $define('OS_WIN', defined('PHP_WINDOWS_VERSION_PLATFORM'));
 $define('S_64_BITS', PHP_INT_SIZE == 8);
 $define('S_32_BITS', !S_64_BITS);
 $define('PHP_INT_MIN', ~PHP_INT_MAX);
-$define('PHP_FLOAT_MIN', (float) PHP_INT_MIN);
-$define('PHP_FLOAT_MAX', (float) PHP_INT_MAX);
+$define('PHP_FLOAT_MIN', (float)PHP_INT_MIN);
+$define('PHP_FLOAT_MAX', (float)PHP_INT_MAX);
 $define('π', M_PI);
-$define('nil', null);
+$define('nil', NULL);
 $define('_public', 1);
 $define('_protected', 2);
 $define('_private', 4);
@@ -83,9 +83,9 @@ $define('_final', 64);
 $define('_dynamic', ~_static);
 $define('_concrete', ~_abstract);
 $define('_overridable', ~_final);
-$define('WITH_COMPOSER', class_exists('Composer\Autoload\ClassLoader', false) ||
-                          ('cli' === PHP_SAPI &&
-                          file_exists(__DIR__ . DS . '..' . DS . '..' . DS . 'autoload.php')));
+$define('WITH_COMPOSER', class_exists('Composer\Autoload\ClassLoader', FALSE) ||
+	('cli' === PHP_SAPI &&
+		file_exists(__DIR__ . DS . '..' . DS . '..' . DS . 'autoload.php')));
 
 if (!function_exists('xcallable')) {
     /**
